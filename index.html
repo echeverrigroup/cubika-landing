@@ -1,50 +1,140 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cubika | Soluciones Logísticas Inteligentes</title>
-  <style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cubika - Soluciones Logísticas Inteligentes</title>
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: "white";
-      color: black;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-    }
-    h1 {
-      color: #236D0C;
-      font-size: 2.1rem;
-      margin-bottom: 0.5rem;
-    }
-    p {
-      color: #0F0F0F;
-      font-size: 1.2rem;
-      max-width: 500px;
-      line-height: 1.2;
-    }
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
 
-   pp {
-      color: #001A32;
-      font-size: 1.0rem;
-      max-width: 500px;
-      line-height: 1.2;
-    }
-    
-  </style>
+    <style>
+        :root {
+            --azul-oscuro: #0A2C47;
+            --azul-medio: #0E416D;
+            --verde-oscuro: #1C660F;
+            --verde-claro: #67E03D;
+            --gris-suave: #f4f7fa;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: white;
+            color: var(--azul-oscuro);
+        }
+
+        /* HEADER */
+        header {
+            width: 100%;
+            background: white;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        header img {
+            height: 48px;
+        }
+
+        nav a {
+            margin-left: 28px;
+            text-decoration: none;
+            color: var(--azul-oscuro);
+            font-weight: 500;
+            transition: 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--verde-claro);
+        }
+
+        /* HERO */
+        .hero {
+            margin-top: 110px;
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 900px;
+            height: 380px;
+            background: var(--azul-medio);
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+            opacity: 0.10;
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--azul-oscuro);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-family: 'Dongle', sans-serif;
+            font-size: 2.0rem;
+            color: var(--azul-medio);
+            max-width: 700px;
+            margin: 0 auto 35px;
+            line-height: 1.1;
+        }
+
+        .hero button {
+            background: var(--verde-claro);
+            color: var(--azul-oscuro);
+            border: none;
+            padding: 16px 36px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .hero button:hover {
+            background: var(--verde-oscuro);
+            color: white;
+        }
+    </style>
 </head>
+
 <body>
-  <img src="img/logo-cubika2.png" alt="Cubika logo" width="380" />
-  <h1> ¡Bienvenido(a)! Estamos en Desarrollo...</h1>
-  <p><b> Soluciones Logísticas Inteligentes para una gestión más eficiente, trazable y adaptable.</b></p>
-  <pp> <b>Steven Rodriguez Echeverri </b>- Fundador y Director General<br> <b>Elizabeth Echeverri Gómez </b>- Contacto y Soporte </pp>
-  <pp><br> <b>cubika.logistica@gmail.com</b><br></pp>
+
+    <!-- HEADER -->
+    <header>
+        <img src="img/logo-cubika2.png" alt="Logo Cubika">
+
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#soluciones">Soluciones</a>
+            <a href="#modulos">Módulos</a>
+            <a href="#sobre">Nosotros</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>Soluciones Logísticas Inteligentes</h1>
+        <p>Una capa intermedia que potencia tu operación sin reemplazar tu WMS.  
+           Implementación rápida, visión clara y control absoluto.</p>
+        <button>Habla con nosotros</button>
+    </section>
+
 </body>
 </html>
-
