@@ -3,112 +3,98 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cubika - Soluciones Logísticas Inteligentes</title>
-
-    <!-- Fuentes -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Cubika – Optimiza tu logística</title>
 
     <style>
-        :root {
-            --azul-oscuro: #0A2C47;
-            --azul-medio: #0E416D;
-            --verde-oscuro: #1C660F;
-            --verde-claro: #67E03D;
-            --gris-suave: #f4f7fa;
-        }
-
         body {
             margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            background: white;
-            color: var(--azul-oscuro);
+            font-family: "Inter", sans-serif;
+            background-color: #f7f7f7;
+            color: #1f2937;
         }
 
-        /* HEADER */
         header {
             width: 100%;
-            background: white;
-            padding: 18px 40px;
+            padding: 16px 40px;
+            background-color: #ffffff;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.08);
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #e8e8e8;
+            z-index: 100;
         }
 
         header img {
-            height: 150px;
+            height: 100px;
         }
 
         nav a {
-            margin-left: 28px;
             text-decoration: none;
-            color: var(--azul-oscuro);
+            color: #1f2937;
+            margin-left: 28px;
+            font-size: 15px;
             font-weight: 500;
-            transition: 0.2s ease;
         }
 
-        nav a:hover {
-            color: var(--verde-claro);
-        }
+        /* --- HERO A Full Width --- */
 
-        /* HERO */
         .hero {
-            margin-top: 110px;
-            text-align: center;
-            padding: 120px 20px;
-            position: relative;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
             width: 100%;
-            max-width: 900px;
-            height: 380px;
-            background: var(--azul-medio);
-            clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
-            opacity: 0.10;
-            z-index: -1;
+            margin-top: 90px;
+            padding: 120px 40px;
+            background: linear-gradient(135deg, #1A73E8, #043CBA);
+            color: #ffffff;
+            text-align: left;
         }
 
         .hero h1 {
-            font-size: 3.2rem;
-            font-weight: 700;
-            color: var(--azul-oscuro);
-            margin-bottom: 10px;
+            font-size: 52px;
+            margin: 0;
+            font-weight: 800;
+            max-width: 700px;
+            line-height: 1.2;
         }
 
         .hero p {
-            font-family: 'Dongle', sans-serif;
-            font-size: 2.0rem;
-            color: var(--azul-medio);
-            max-width: 700px;
-            margin: 0 auto 35px;
-            line-height: 1.1;
+            font-size: 20px;
+            margin-top: 20px;
+            max-width: 650px;
+            opacity: 0.95;
         }
 
-        .hero button {
-            background: var(--verde-claro);
-            color: var(--azul-oscuro);
+        .btn-primary {
+            margin-top: 30px;
+            background-color: #ffffff;
+            color: #043CBA;
+            padding: 14px 26px;
+            border-radius: 8px;
             border: none;
-            padding: 16px 36px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 10px;
+            font-size: 16px;
             cursor: pointer;
+            font-weight: 600;
             transition: 0.2s;
         }
+        .btn-primary:hover {
+            background-color: #e6e6e6;
+        }
 
-        .hero button:hover {
-            background: var(--verde-oscuro);
-            color: white;
+        /* Secciones */
+        section {
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #ffffff;
+            margin-top: 60px;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
         }
     </style>
 </head>
@@ -117,24 +103,39 @@
 
     <!-- HEADER -->
     <header>
-        <img src="img/logo-cubika2.png" alt="Logo Cubika">
-
+        <img src="img/logo-cubika2.png" alt="Cubika Logo">
         <nav>
-            <a href="#">Inicio</a>
-            <a href="#soluciones">Soluciones</a>
-            <a href="#modulos">Módulos</a>
-            <a href="#sobre">Nosotros</a>
+            <a href="#inicio">Inicio</a>
+            <a href="#funciona">Cómo Funciona</a>
+            <a href="#beneficios">Beneficios</a>
             <a href="#contacto">Contacto</a>
         </nav>
     </header>
 
-    <!-- HERO -->
-    <section class="hero">
-        <h1>Soluciones Logísticas Inteligentes</h1>
-        <p>Una capa intermedia que potencia tu operación sin reemplazar tu WMS.  
-           Implementación rápida, visión clara y control absoluto.</p>
-        <button>Habla con nosotros</button>
+    <!-- HERO A FULL WIDTH -->
+    <section class="hero" id="inicio">
+        <h1>La capa inteligente que mejora tus procesos logísticos</h1>
+        <p>
+            Cubika complementa tu WMS actual con una solución ligera, rápida de implementar 
+            y diseñada para optimizar cubicación, control y trazabilidad.
+        </p>
+        <button class="btn-primary">Hablar con el equipo</button>
     </section>
+
+    <!-- SECCIÓN EJEMPLO -->
+    <section id="funciona">
+        <h2>Cómo funciona Cubika</h2>
+        <p>Describe aquí los módulos o el flujo del MVP.</p>
+    </section>
+
+    <section id="beneficios">
+        <h2>Beneficios principales</h2>
+        <p>Agrega bullets claros sobre el valor que entregará Cubika.</p>
+    </section>
+
+    <footer>
+        © 2025 Cubika — Soluciones logísticas inteligentes.
+    </footer>
 
 </body>
 </html>
