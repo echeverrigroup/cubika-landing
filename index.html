@@ -73,26 +73,32 @@
   <pp> <b>Steven Rodriguez Echeverri </b> - Fundador y Director General <br> <b>Elizabeth Echeverri Gómez </b>- Contacto y Soporte </pp>
   <pp><br> <a href="mailto:cubika.logistica@gmail.com"><b>cubika.logistica@gmail.com</b></a> <br></pp>
 
-
-  <input type="file" id="fileInput" />
-<button onclick="uploadFile()">Subir archivo</button>
+  
+<form id="uploadForm">
+  <input type="file" id="archivo" name="archivo" />
+  <button type="submit">Subir archivo</button>
+</form>
 
 <script>
-async function uploadFile() {
-    const file = document.getElementById('fileInput').files[0];
-    const formData = new FormData();
-    formData.append('file', file);
+document.getElementById("uploadForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    const res = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData
-    });
+  const fileInput = document.getElementById("archivo");
+  const formData = new FormData();
+  formData.append("archivo", fileInput.files[0]);
 
-    const data = await res.json();
-    console.log(data);
-    alert("Archivo subido, revisa la consola");
-}
+  const res = await fetch("/api/upload", {
+    method: "POST",
+    body: formData
+  });
+
+  const result = await res.json();
+  console.log(result);
+  alert("Resultado en consola");
+});
 </script>
+
+
 
   
 </body>
