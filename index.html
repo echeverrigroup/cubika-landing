@@ -74,30 +74,6 @@
   <pp><br> <a href="mailto:cubika.logistica@gmail.com"><b>cubika.logistica@gmail.com</b></a> <br></pp>
 
 
-  <input id="fileInput" type="file" />
-<button id="uploadBtn">Subir archivo</button>
-
-<script>
-  document.getElementById("uploadBtn").addEventListener("click", async () => {
-    const file = document.getElementById("fileInput").files[0];
-    if (!file) {
-      alert("Selecciona un archivo primero.");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("file", file);
-
-    const res = await fetch("/api/upload", {
-      method: "POST",
-      body: formData
-    });
-
-    const data = await res.json();
-    alert(data.message);
-  });
-</script>
-
   <input type="file" id="fileInput" />
 <button onclick="uploadFile()">Subir archivo</button>
 
