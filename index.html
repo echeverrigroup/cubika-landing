@@ -72,6 +72,33 @@
   <p><b>    Soluciones Logísticas Inteligentes para una gestión más eficiente, trazable y adaptable.</b></p>
   <pp> <b>Steven Rodriguez Echeverri </b> - Fundador y Director General <br> <b>Elizabeth Echeverri Gómez </b>- Contacto y Soporte </pp>
   <pp><br> <a href="mailto:cubika.logistica@gmail.com"><b>cubika.logistica@gmail.com</b></a> <br></pp>
+
+
+  <input id="fileInput" type="file" />
+<button id="uploadBtn">Subir archivo</button>
+
+<script>
+  document.getElementById("uploadBtn").addEventListener("click", async () => {
+    const file = document.getElementById("fileInput").files[0];
+    if (!file) {
+      alert("Selecciona un archivo primero.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const res = await fetch("/api/upload", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await res.json();
+    alert(data.message);
+  });
+</script>
+
+  
 </body>
 
 
