@@ -98,6 +98,26 @@
   });
 </script>
 
+  <input type="file" id="fileInput" />
+<button onclick="uploadFile()">Subir archivo</button>
+
+<script>
+async function uploadFile() {
+    const file = document.getElementById('fileInput').files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData
+    });
+
+    const data = await res.json();
+    console.log(data);
+    alert("Archivo subido, revisa la consola");
+}
+</script>
+
   
 </body>
 
