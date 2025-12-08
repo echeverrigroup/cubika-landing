@@ -1,3 +1,6 @@
+import Busboy from "busboy";
+import { createClient } from "@supabase/supabase-js";
+
 export const config = {
   api: {
     bodyParser: false,
@@ -5,18 +8,54 @@ export const config = {
 };
 
 export default async function handler(req, res) {
-  try {
-    if (req.method !== "POST") {
-      return res.status(405).json({ error: "Method not allowed" });
-    }
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Método no permitido" });
+  }
 
-    res.status(200).json({
-      message: "File received correctly",
-      note: "Todavía no estamos guardando archivos."
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_KEY
+  );
+
+  const busboy = Busboy({ headers: req.headers });
+
+  let uploadPromise = null;
+
+  busboy.on("file", (fieldname, file, filename) => {
+    let chunks = [];
+
+    file.on("data", (chunk) => {
+      chunks.push(chunk);
     });
 
-  } catch (error) {
-    console.error("UPLOAD ERROR:", error);
-    return res.status(500).json({ error: error.message });
-  }
+    file.on("end", () => {
+      const finalBuffer = Buffer.concat(chunks);
+
+      uploadPromise = supabase.storage
+        .from("uploads")
+        .upload(`files/${Date.now()}-${filename}`, finalBuffer, {
+          contentType: "application/octet-stream",
+          upsert: false,
+        });
+    });
+  });
+
+  busboy.on("finish", async () => {
+    if (!uploadPromise) {
+      return res.status(400).json({ error: "No se recibió archivo" });
+    }
+
+    const { data, error } = await uploadPromise;
+
+    if (error) {
+      return res.status(500).json({ error: "Error al subir archivo", detail: error });
+    }
+
+    return res.status(200).json({
+      message: "Archivo subido correctamente",
+      file: data,
+    });
+  });
+
+  req.pipe(busboy);
 }
