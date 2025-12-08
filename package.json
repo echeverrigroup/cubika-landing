@@ -1,0 +1,8 @@
+{
+  "name": "cubika-landing",
+  "version": "1.0.0",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.7.0",
+    "busboy": "^1.6.0"
+  }
+}
