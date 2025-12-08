@@ -12,9 +12,10 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Método no permitido" });
   }
 
+  // 🔥 Corrección: usar variables backend correctas
   const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_KEY
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_ANON_KEY
   );
 
   const busboy = Busboy({ headers: req.headers });
@@ -31,8 +32,9 @@ export default async function handler(req, res) {
     file.on("end", () => {
       const finalBuffer = Buffer.concat(chunks);
 
+      // 🔥 bucket corregido: usa variable para evitar errores
       uploadPromise = supabase.storage
-        .from("uploads")
+        .from(process.env.SUPABASE_BUCKET)
         .upload(`files/${Date.now()}-${filename}`, finalBuffer, {
           contentType: "application/octet-stream",
           upsert: false,
