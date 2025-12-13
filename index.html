@@ -63,6 +63,27 @@
       max-width: 500px;
       line-height: 1.2;
     }
+
+    .cta-upload {
+  margin-top: 30px;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #236D0C, #2FA01B);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: all 0.25s ease;
+}
+
+.cta-upload:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+}
+
     
   </style>
 </head>
@@ -74,29 +95,10 @@
   <pp><br> <a href="mailto:cubika.logistica@gmail.com"><b>cubika.logistica@gmail.com</b></a> <br></pp>
 
   
-<form id="uploadForm">
-  <input type="file" id="archivo" name="archivo" /><br>
-  <button type="submit">Subir archivo</button>
-</form>
+<a href="/adaptador.html" class="cta-upload">
+  Adpatador Cubika
+</a>
 
-<script>
-document.getElementById("uploadForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const fileInput = document.getElementById("archivo");
-  const formData = new FormData();
-  formData.append("archivo", fileInput.files[0]);
-
-  const res = await fetch("/api/upload", {
-    method: "POST",
-    body: formData
-  });
-
-  const result = await res.json();
-  console.log(result);
-  alert("Exito! Resultado en consola");
-});
-</script>
 
 
   
