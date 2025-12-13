@@ -1,1 +1,106 @@
-hola steven
+<!DOCTYPE html>
+<html lang="es">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0LFZ56HRYN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0LFZ56HRYN');
+</script>
+  
+<head>
+
+  <!-- favicon principal (.ico) -->
+<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+
+<!-- favicons adicionales (opcional, mejora compatibilidad) -->
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" href="/favicon-16x16.png" sizes="16x16">
+
+<!-- icono para iOS (cuando alguien añade al home screen) -->
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<!-- color de la barra en navegadores móviles -->
+<meta name="theme-color" content="#0C355C">
+
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cubika | Soluciones Logísticas Inteligentes - Middleware Smart Logistics</title>
+  <style>
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: "white";
+      color: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      text-align: center;
+    }
+    h1 {
+      color: #236D0C;
+      font-size: 2.1rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      color: #0F0F0F;
+      font-size: 1.2rem;
+      max-width: 500px;
+      line-height: 1.2;
+    }
+
+   pp {
+      color: #001A32;
+      font-size: 1.0rem;
+      max-width: 500px;
+      line-height: 1.2;
+    }
+    
+  </style>
+</head>
+<body>
+  <img src="img/logo-cubika2.png" alt="Cubika logo" width="380" />
+  <h1> Adaptador Middelware Smart Logistics </h1>
+  <p><b> Intenta cargar un archivo de prueba.</b></p>
+  
+
+  
+<form id="uploadForm">
+  <input type="file" id="archivo" name="archivo" /><br>
+  <button type="submit">Subir archivo</button>
+</form>
+
+<script>
+document.getElementById("uploadForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const fileInput = document.getElementById("archivo");
+  const formData = new FormData();
+  formData.append("archivo", fileInput.files[0]);
+
+  const res = await fetch("/api/upload", {
+    method: "POST",
+    body: formData
+  });
+
+  const result = await res.json();
+  console.log(result);
+  alert("Exito! Resultado en consola");
+});
+</script>
+
+
+  
+</body>
+
+
+  
+</html>
