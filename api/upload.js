@@ -18,23 +18,21 @@ export default async function handler(req, res) {
   );
 
   const busboy = Busboy({ headers: req.headers });
-
   let uploadPromise = null;
 
-  busboy.on("file", (fieldname, file, filename) => {
-    let chunks = [];
+  busboy.on("file", (fieldname, file, info) => {
+    const { filename, mimeType } = info;
+    const chunks = [];
 
-    file.on("data", (chunk) => {
-      chunks.push(chunk);
-    });
+    file.on("data", (chunk) => chunks.push(chunk));
 
     file.on("end", () => {
-      const finalBuffer = Buffer.concat(chunks);
+      const buffer = Buffer.concat(chunks);
 
       uploadPromise = supabase.storage
         .from("uploads")
-        .upload(`files/${Date.now()}-${filename}`, finalBuffer, {
-          contentType: "application/octet-stream",
+        .upload(`files/${Date.now()}-${filename}`, buffer, {
+          contentType: mimeType,
           upsert: false,
         });
     });
@@ -48,12 +46,12 @@ export default async function handler(req, res) {
     const { data, error } = await uploadPromise;
 
     if (error) {
-      return res.status(500).json({ error: "Error al subir archivo", detail: error });
+      return res.status(500).json({ error: error.message });
     }
 
     return res.status(200).json({
       message: "Archivo subido correctamente",
-      file: data,
+      data,
     });
   });
 
