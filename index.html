@@ -75,7 +75,7 @@
 
   
 <form id="uploadForm">
-  <input type="file" id="archivo" name="archivo" />
+  <input type="file" id="archivo" name="archivo" /><br>
   <button type="submit">Subir archivo</button>
 </form>
 
@@ -94,10 +94,9 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
 
   const result = await res.json();
   console.log(result);
-  alert("Carga Exitosa! Resultado en consola");
+  alert("Resultado en consola");
 });
 </script>
-
 
 
   
