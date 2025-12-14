@@ -1,5 +1,6 @@
 import Busboy from "busboy";
 import { createClient } from "@supabase/supabase-js";
+import * as XLSX from "xlsx";
 
 export const config = {
   api: {
@@ -28,16 +29,47 @@ export default async function handler(req, res) {
     file.on("data", (chunk) => chunks.push(chunk));
 
     file.on("end", () => {
-      const buffer = Buffer.concat(chunks);
-
-
+      const finalBuffer = Buffer.concat(chunks);
+    
+      // 1️⃣ LEER EL EXCEL
+      const workbook = XLSX.read(finalBuffer, { type: "buffer" });
+      const firstSheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[firstSheetName];
+    
+      // 2️⃣ CONVERTIR A MATRIZ
+      const sheetData = XLSX.utils.sheet_to_json(worksheet, {
+        header: 1,
+        blankrows: false,
+      });
+    
+      // 3️⃣ DETECTAR ENCABEZADOS
+      let headers = [];
+    
+      for (const row of sheetData) {
+        const validCells = row.filter(
+          (cell) => typeof cell === "string" && cell.trim() !== ""
+        );
+    
+        if (validCells.length >= 2) {
+          headers = row;
+          break;
+        }
+      }
+    
+      // 4️⃣ SUBIR ARCHIVO A SUPABASE (LO QUE YA FUNCIONABA)
       uploadPromise = supabase.storage
         .from("uploads")
-        .upload(`files/${Date.now()}-${filename}`, buffer, {
-          contentType: mimeType,
+        .upload(`files/${Date.now()}-${filename}`, finalBuffer, {
+          contentType:
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
           upsert: false,
         });
+    
+      // 5️⃣ GUARDAR HEADERS PARA RESPUESTA
+      req.detectedHeaders = headers;
     });
+
+    
   });
 
 
@@ -54,7 +86,10 @@ export default async function handler(req, res) {
 
     return res.status(200).json({
       message: "Archivo subido correctamente",
-      data,
+      file: data,
+      headers: req.detectedHeaders || [],
+
+      
     });
   });
 
