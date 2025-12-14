@@ -20,23 +20,36 @@ export default async function handler(req, res) {
   const busboy = Busboy({ headers: req.headers });
   let uploadPromise = null;
 
-  busboy.on("file", (fieldname, file, info) => {
-    const { filename, mimeType } = info;
-    const chunks = [];
+ busboy.on("file", (fieldname, file, filename) => {
 
-    file.on("data", (chunk) => chunks.push(chunk));
+  const allowedExtensions = [".xlsx", ".xls"];
+  const fileExtension = filename.substring(filename.lastIndexOf(".")).toLowerCase();
 
-    file.on("end", () => {
-      const buffer = Buffer.concat(chunks);
-
-      uploadPromise = supabase.storage
-        .from("uploads")
-        .upload(`files/${Date.now()}-${filename}`, buffer, {
-          contentType: mimeType,
-          upsert: false,
-        });
+  if (!allowedExtensions.includes(fileExtension)) {
+    file.resume(); // descarta el stream
+    return res.status(400).json({
+      error: "Formato no permitido. Solo se aceptan archivos Excel (.xlsx, .xls)"
     });
+  }
+
+  let chunks = [];
+
+  file.on("data", (chunk) => {
+    chunks.push(chunk);
   });
+
+  file.on("end", () => {
+    const finalBuffer = Buffer.concat(chunks);
+
+    uploadPromise = supabase.storage
+      .from("uploads")
+      .upload(`files/${Date.now()}-${filename}`, finalBuffer, {
+        contentType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        upsert: false,
+      });
+  });
+});
+
 
   busboy.on("finish", async () => {
     if (!uploadPromise) {
