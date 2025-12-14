@@ -32,33 +32,6 @@ export default async function handler(req, res) {
     file.on("end", () => {
       const buffer = Buffer.concat(chunks);
 
-          // Leer el archivo Excel desde el buffer
-    const workbook = XLSX.read(buffer, { type: "buffer" });
-    
-    // Tomamos la primera hoja
-    const firstSheetName = workbook.SheetNames[0];
-    const worksheet = workbook.Sheets[firstSheetName];
-    
-    // Convertimos a array de arrays
-    const sheetData = XLSX.utils.sheet_to_json(worksheet, {
-      header: 1,
-      blankrows: false,
-    });
-
-      let headers = [];
-
-for (const row of sheetData) {
-  const nonEmptyCells = row.filter(
-    (cell) => typeof cell === "string" && cell.trim() !== ""
-  );
-
-  if (nonEmptyCells.length >= 2) {
-    headers = row;
-    break;
-  }
-}
-
-
 
       uploadPromise = supabase.storage
         .from("uploads")
@@ -83,7 +56,6 @@ for (const row of sheetData) {
 
     return res.status(200).json({
       message: "Archivo subido correctamente",
-      headers: headers,
       data,
     });
   });
