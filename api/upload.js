@@ -1,5 +1,3 @@
-import * as XLSX from "xlsx";
-
 import Busboy from "busboy";
 import { createClient } from "@supabase/supabase-js";
 
