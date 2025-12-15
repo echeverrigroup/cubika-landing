@@ -84,10 +84,6 @@
 />
 <br>
   <button type="submit">Subir archivo</button>
-</form>
-
-
-
 
   <div id="headersSection" style="display:none; margin-top:30px; max-width:600px;">
   <h3>Encabezados detectados</h3>
@@ -107,6 +103,8 @@
     Confirmar encabezados
   </button>
 </div>
+  
+</form>
 
   
 
@@ -125,30 +123,7 @@
 
 
 <script>
-document.getElementById("uploadForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
 
-  const fileInput = document.getElementById("archivo");
-  const formData = new FormData();
-  formData.append("archivo", fileInput.files[0]);
-
-  const res = await fetch("/api/upload", {
-    method: "POST",
-    body: formData
-  });
-
-  const result = await res.json();
-console.log(result);
-
-if (result.headers && result.headers.length > 0) {
-  mostrarHeaders(result.headers);
-}
-
-});
-</script>
-
-
-<script>
 function mostrarHeaders(headers) {
   const section = document.getElementById("headersSection");
   const list = document.getElementById("headersList");
@@ -166,7 +141,7 @@ function mostrarHeaders(headers) {
         ${header}
       </label>
     `;
-
+    
     list.appendChild(li);
   });
 }
@@ -190,7 +165,31 @@ document.getElementById("confirmHeadersBtn").addEventListener("click", () => {
   // - los guardas en Supabase
   // - o continúas el flujo
 });
+
+  
+document.getElementById("uploadForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const fileInput = document.getElementById("archivo");
+  const formData = new FormData();
+  formData.append("archivo", fileInput.files[0]);
+
+  const res = await fetch("/api/upload", {
+    method: "POST",
+    body: formData
+  });
+
+  const result = await res.json();
+console.log(result);
+
+if (result.headers && result.headers.length > 0) {
+  mostrarHeaders(result.headers);
+}
+
+});
 </script>
+
+
 
 
 
