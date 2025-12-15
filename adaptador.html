@@ -138,10 +138,60 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
   });
 
   const result = await res.json();
-  console.log(result);
-  alert("Archivo cargado con éxito!");
+console.log(result);
+
+if (result.headers && result.headers.length > 0) {
+  mostrarHeaders(result.headers);
+}
+
 });
 </script>
+
+
+<script>
+function mostrarHeaders(headers) {
+  const section = document.getElementById("headersSection");
+  const list = document.getElementById("headersList");
+
+  list.innerHTML = "";
+  section.style.display = "block";
+
+  headers.forEach((header, index) => {
+    const li = document.createElement("li");
+    li.style.marginBottom = "6px";
+
+    li.innerHTML = `
+      <label>
+        <input type="checkbox" checked data-index="${index}">
+        ${header}
+      </label>
+    `;
+
+    list.appendChild(li);
+  });
+}
+
+document.getElementById("confirmHeadersBtn").addEventListener("click", () => {
+  const checkboxes = document.querySelectorAll("#headersList input[type=checkbox]");
+  const confirmedHeaders = [];
+
+  checkboxes.forEach(cb => {
+    if (cb.checked) {
+      confirmedHeaders.push(cb.parentElement.textContent.trim());
+    }
+  });
+
+  console.log("Headers confirmados:", confirmedHeaders);
+
+  alert("Encabezados confirmados. Revisa consola.");
+
+  // Aquí luego:
+  // - los envías al backend
+  // - los guardas en Supabase
+  // - o continúas el flujo
+});
+</script>
+
 
 
   
