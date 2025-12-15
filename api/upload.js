@@ -23,29 +23,30 @@ export default async function handler(req, res) {
   let uploadPromise = null;
   let analysisResult = null;
 
-  busboy.on("file", (fieldname, file, filename) => {
-    let chunks = [];
+busboy.on("file", (fieldname, file, info) => {
+  const { filename, mimeType } = info;
+  let chunks = [];
 
-    file.on("data", (chunk) => {
-      chunks.push(chunk);
-    });
-
-    file.on("end", async () => {
-      const buffer = Buffer.concat(chunks);
-
-      // 1️⃣ Subir archivo a Supabase
-      uploadPromise = supabase.storage
-        .from("uploads")
-        .upload(`files/${Date.now()}-${filename}`, buffer, {
-          contentType:
-            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          upsert: false,
-        });
-
-      // 2️⃣ Analizar estructura del Excel
-      analysisResult = analizarExcelDesdeBuffer(buffer);
-    });
+  file.on("data", (chunk) => {
+    chunks.push(chunk);
   });
+
+  file.on("end", async () => {
+    const buffer = Buffer.concat(chunks);
+
+    // 1️⃣ Subir archivo a Supabase
+    uploadPromise = supabase.storage
+      .from("uploads")
+      .upload(`files/${Date.now()}-${filename}`, buffer, {
+        contentType: mimeType,
+        upsert: false,
+      });
+
+    // 2️⃣ Analizar Excel
+    analysisResult = analizarExcelDesdeBuffer(buffer);
+  });
+});
+
 
   busboy.on("finish", async () => {
     if (!uploadPromise) {
