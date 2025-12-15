@@ -21,6 +21,7 @@ function detectarFilaEncabezados(rows, minColumnas = 3) {
       }
     });
 
+
     // Heurística simple pero robusta
     const score = noVacios * 2 + strings;
 
@@ -50,9 +51,19 @@ export function analizarExcelDesdeBuffer(buffer) {
 
   const headerRowIndex = detectarFilaEncabezados(rows);
 
-  return {
-    headerRowIndex,
-    headers:
-      headerRowIndex !== null ? rows[headerRowIndex] : [],
-  };
+  let headers = [];
+
+if (headerRowIndex !== null) {
+  headers = rows[headerRowIndex]
+    .map(cell =>
+      typeof cell === "string" ? cell.trim() : null
+    )
+    .filter(cell => cell && cell.length > 0);
+}
+
+return {
+  headerRowIndex,
+  headers,
+};
+
 }
