@@ -182,9 +182,10 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
   const result = await res.json();
   console.log(result);
 
-  if (result.headers && result.headers.length > 0) {
-  mostrarHeaders(result.headers);
-  }
+if (result.analysis && result.analysis.headers?.length > 0) {
+  mostrarHeaders(result.analysis.headers);
+  console.log("Fila de encabezados:", result.analysis.headerRowIndex);
+}
 
 });
 </script>
