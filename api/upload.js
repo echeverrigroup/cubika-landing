@@ -65,6 +65,10 @@ busboy.on("file", (fieldname, file, info) => {
       message: "Archivo subido correctamente",
       file: data,
       analysis: analysisResult,
+
+      headers: analysis.headers,
+      headerRowIndex: analysis.headerRowIndex
+      
     });
   });
 
