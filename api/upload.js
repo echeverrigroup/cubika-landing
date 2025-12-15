@@ -20,53 +20,66 @@ export default async function handler(req, res) {
 
   const busboy = Busboy({ headers: req.headers });
 
-  let uploadPromise = null;
-  let analysisResult = null;
+  let uploadPromise;
+  let analysisResult;
 
-busboy.on("file", (fieldname, file, info) => {
-  const { filename, mimeType } = info;
-  let chunks = [];
+  // 🔒 Promesa que garantiza que el archivo fue procesado
+  const fileProcessed = new Promise((resolve, reject) => {
+    busboy.on("file", (fieldname, file, info) => {
+      const { filename, mimeType } = info;
+      const chunks = [];
 
-  file.on("data", (chunk) => {
-    chunks.push(chunk);
-  });
+      file.on("data", chunk => chunks.push(chunk));
 
-  file.on("end", async () => {
-    const buffer = Buffer.concat(chunks);
+      file.on("end", () => {
+        try {
+          const buffer = Buffer.concat(chunks);
 
-    // 1️⃣ Subir archivo a Supabase
-    uploadPromise = supabase.storage
-      .from("uploads")
-      .upload(`files/${Date.now()}-${filename}`, buffer, {
-        contentType: mimeType,
-        upsert: false,
+          // 1️⃣ Analizar Excel
+          analysisResult = analizarExcelDesdeBuffer(buffer);
+
+          // 2️⃣ Subir archivo
+          uploadPromise = supabase.storage
+            .from("uploads")
+            .upload(`files/${Date.now()}-${filename}`, buffer, {
+              contentType: mimeType,
+              upsert: false,
+            });
+
+          resolve();
+        } catch (err) {
+          reject(err);
+        }
       });
-
-    // 2️⃣ Analizar Excel
-    analysisResult = analizarExcelDesdeBuffer(buffer);
+    });
   });
-});
-
 
   busboy.on("finish", async () => {
-    if (!uploadPromise) {
-      return res.status(400).json({ error: "No se recibió archivo" });
+    try {
+      // ⏳ Espera real al procesamiento del archivo
+      await fileProcessed;
+
+      const { data, error } = await uploadPromise;
+
+      if (error) {
+        return res.status(500).json({
+          error: "Error al subir archivo",
+          detail: error,
+        });
+      }
+
+      return res.status(200).json({
+        message: "Archivo subido correctamente",
+        file: data,
+        analysis: analysisResult,
+      });
+
+    } catch (err) {
+      return res.status(500).json({
+        error: "Error procesando archivo",
+        detail: err.message,
+      });
     }
-
-    const { data, error } = await uploadPromise;
-
-    if (error) {
-      return res
-        .status(500)
-        .json({ error: "Error al subir archivo", detail: error });
-    }
-
-    return res.status(200).json({
-      message: "Archivo subido correctamente",
-      file: data,
-      analysis: analysisResult,
-      
-    });
   });
 
   req.pipe(busboy);
