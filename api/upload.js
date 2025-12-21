@@ -72,6 +72,9 @@ export default async function handler(req, res) {
         message: "Archivo subido correctamente",
         file: data,
         analysis: analysisResult,
+        analysisCache = result.analysis;
+
+  
       });
 
     } catch (err) {
