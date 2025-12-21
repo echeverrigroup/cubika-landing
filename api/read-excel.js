@@ -64,6 +64,7 @@ if (headerRowIndex !== null) {
 return {
   headerRowIndex,
   headers,
+  rows,
 };
 
 }
