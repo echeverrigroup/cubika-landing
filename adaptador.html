@@ -102,6 +102,13 @@
   ">
     Confirmar encabezados
   </button>
+
+    <div id="tablePreview" style="display:none; margin-top:40px; max-width:90%; overflow:auto;">
+  <h3>Vista previa de datos</h3>
+  <table id="previewTable" border="1" cellpadding="6" style="border-collapse:collapse;"></table>
+</div>
+
+    
 </div>
   
 </form>
@@ -117,13 +124,19 @@
   text-decoration: none;
   border-radius: 6px;
   font-weight: 600;
-">
+  ">
   Ver historial de archivos
-</a>
+  </a>
 
-
+  
 <script>
 
+
+  let analysisCache = null;
+
+  analysisCache = result.analysis;
+
+  
 function mostrarHeaders(headers) {
   const section = document.getElementById("headersSection");
   const list = document.getElementById("headersList");
@@ -158,8 +171,11 @@ document.getElementById("confirmHeadersBtn").addEventListener("click", () => {
 
   console.log("Headers confirmados:", confirmedHeaders);
 
-  alert("Encabezados confirmados. Revisa consola.");
+  alert("Encabezados confirmados. Revisa la Visualización.");
 
+
+
+  
   // Aquí luego:
   // - los envías al backend
   // - los guardas en Supabase
