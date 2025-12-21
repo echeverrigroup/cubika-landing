@@ -195,6 +195,8 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
   const result = await res.json();
   console.log(result);
 
+  analysisCache = result.analysis;
+
 if (result.analysis && result.analysis.headers?.length > 0) {
   mostrarHeaders(result.analysis.headers);
   console.log("Fila de encabezados:", result.analysis.headerRowIndex);
