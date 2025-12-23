@@ -89,6 +89,11 @@
   <h3>Encabezados detectados</h3>
   <p>Selecciona y confirma los encabezados correctos:</p>
 
+  <div id="tablePreview" style="display:none; margin-top:40px; max-width:90%; overflow:auto;">
+  <h3>Vista previa de datos</h3>
+  <table id="previewTable" border="1" cellpadding="6" style="border-collapse:collapse;"></table>
+  </div>
+
   <ul id="headersList" style="list-style:none; padding:0;"></ul>
 
   <button id="confirmHeadersBtn" style="
@@ -102,11 +107,6 @@
   ">
     Confirmar encabezados
   </button>
-
-    <div id="tablePreview" style="display:none; margin-top:40px; max-width:90%; overflow:auto;">
-  <h3>Vista previa de datos</h3>
-  <table id="previewTable" border="1" cellpadding="6" style="border-collapse:collapse;"></table>
-</div>
 
     
 </div>
@@ -214,6 +214,9 @@ document.getElementById("confirmHeadersBtn").addEventListener("click", () => {
     if (cb.checked) {
       confirmedHeaders.push(cb.parentElement.textContent.trim());
     }
+
+    mostrarTabla(confirmedHeaders);
+    
   });
 
   console.log("Headers confirmados:", confirmedHeaders);
