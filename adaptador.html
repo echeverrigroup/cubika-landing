@@ -134,7 +134,7 @@
 
   let analysisCache = null;
 
-function mostrarHeaders(headers) {
+  function mostrarHeaders(headers) {
   const section = document.getElementById("headersSection");
   const list = document.getElementById("headersList");
 
@@ -155,6 +155,56 @@ function mostrarHeaders(headers) {
     list.appendChild(li);
   });
 }
+
+
+  /* ====== NUEVO MÓDULO: Vista de tabla ====== */
+function mostrarTabla(headersConfirmados) {
+  const tableContainer = document.getElementById("tablePreview");
+  const table = document.getElementById("previewTable");
+
+  table.innerHTML = "";
+  tableContainer.style.display = "block";
+
+  const allRows = analysisCache.rows;
+  const headerRowIndex = analysisCache.headerRowIndex;
+
+  const headerRow = allRows[headerRowIndex];
+
+  const columnIndexes = headerRow
+    .map((h, i) => headersConfirmados.includes(h?.trim()) ? i : null)
+    .filter(i => i !== null);
+
+  const thead = document.createElement("thead");
+  const trHead = document.createElement("tr");
+
+  headersConfirmados.forEach(h => {
+    const th = document.createElement("th");
+    th.textContent = h;
+    trHead.appendChild(th);
+  });
+
+  thead.appendChild(trHead);
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+
+  allRows
+    .slice(headerRowIndex + 1, headerRowIndex + 21)
+    .forEach(row => {
+      const tr = document.createElement("tr");
+
+      columnIndexes.forEach(i => {
+        const td = document.createElement("td");
+        td.textContent = row[i] ?? "";
+        tr.appendChild(td);
+      });
+
+      tbody.appendChild(tr);
+    });
+
+  table.appendChild(tbody);
+}
+  
 
 document.getElementById("confirmHeadersBtn").addEventListener("click", () => {
   const checkboxes = document.querySelectorAll("#headersList input[type=checkbox]");
@@ -199,6 +249,9 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
 
 if (result.analysis && result.analysis.headers?.length > 0) {
   mostrarHeaders(result.analysis.headers);
+
+  mostrarTabla();
+  
   console.log("Fila de encabezados:", result.analysis.headerRowIndex);
 }
 
