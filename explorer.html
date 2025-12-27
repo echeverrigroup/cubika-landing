@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Explorador de Datos | Cubika</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Segoe UI, sans-serif;
+      color: #001A32;
+    }
+
+    header {
+      padding: 16px;
+      background: #0C355C;
+      color: white;
+    }
+
+    .stats {
+      padding: 16px;
+      background: #f3f6f9;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .table-container {
+      height: calc(100vh - 140px);
+      overflow: auto;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: max-content;
+      min-width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 6px 10px;
+      white-space: nowrap;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      background: #e9eef3;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h2>Explorador de Datos – Cubika</h2>
+</header>
+
+<div class="stats" id="stats"></div>
+
+<div class="table-container">
+  <table id="dataTable"></table>
+</div>
+
+<script>
+const stored = sessionStorage.getItem("cubika_analysis");
+
+if (!stored) {
+  alert("No hay datos cargados");
+  window.location.href = "/adaptador.html";
+}
+
+const { analysis, headersConfirmados } = JSON.parse(stored);
+
+const { rows, headerRowIndex } = analysis;
+const headerRow = rows[headerRowIndex];
+
+// 🔹 columnas seleccionadas
+const columnIndexes = headerRow
+  .map((h, i) => headersConfirmados.includes(h?.trim()) ? i : null)
+  .filter(i => i !== null);
+
+// 🔹 estadísticas básicas
+document.getElementById("stats").innerHTML = `
+  <div><b>Filas:</b> ${rows.length - headerRowIndex - 1}</div>
+  <div><b>Columnas:</b> ${headersConfirmados.length}</div>
+`;
+
+// 🔹 render tabla
+const table = document.getElementById("dataTable");
+
+const thead = document.createElement("thead");
+const trHead = document.createElement("tr");
+
+headersConfirmados.forEach(h => {
+  const th = document.createElement("th");
+  th.textContent = h;
+  trHead.appendChild(th);
+});
+
+thead.appendChild(trHead);
+table.appendChild(thead);
+
+const tbody = document.createElement("tbody");
+
+rows.slice(headerRowIndex + 1).forEach(row => {
+  const tr = document.createElement("tr");
+
+  columnIndexes.forEach(i => {
+    const td = document.createElement("td");
+    td.textContent = row[i] ?? "";
+    tr.appendChild(td);
+  });
+
+  tbody.appendChild(tr);
+});
+
+table.appendChild(tbody);
+</script>
+
+</body>
+</html>
