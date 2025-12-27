@@ -96,7 +96,7 @@
 
   <ul id="headersList" style="list-style:none; padding:0;"></ul>
 
-  <button id="confirmHeadersBtn" style="
+  <button id="confirmHeadersBtn" type="button" style="
     margin-top:20px;
     padding:10px 20px;
     background:#236D0C;
@@ -220,7 +220,6 @@ document.getElementById("confirmHeadersBtn").addEventListener("click", () => {
 
       
     }
-
     
     
   });
@@ -260,9 +259,6 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
 
 if (result.analysis && result.analysis.headers?.length > 0) {
   mostrarHeaders(result.analysis.headers);
-
- // mostrarTabla();
-  
   console.log("Fila de encabezados:", result.analysis.headerRowIndex);
 }
 
