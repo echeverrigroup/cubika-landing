@@ -133,6 +133,8 @@
 
 
   let analysisCache = null;
+  let currentFileName = "";
+
 
   function mostrarHeaders(headers) {
   const section = document.getElementById("headersSection");
@@ -268,6 +270,10 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
   console.log(result);
 
   analysisCache = result.analysis;
+
+  const fullPath = result.file.path;
+  currentFileName = fullPath.split("-").slice(2).join("-");
+
 
 if (result.analysis && result.analysis.headers?.length > 0) {
   mostrarHeaders(result.analysis.headers);
