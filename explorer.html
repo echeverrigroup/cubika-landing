@@ -73,6 +73,14 @@
 <script>
 const stored = sessionStorage.getItem("cubika_analysis");
 
+const params = new URLSearchParams(window.location.search);
+const fileName = params.get("file");
+
+if (fileName) {
+  document.getElementById("activeFileName").textContent = fileName;
+}
+
+
 if (!stored) {
   alert("No hay datos cargados");
   window.location.href = "/adaptador.html";
