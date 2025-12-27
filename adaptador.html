@@ -170,9 +170,9 @@
     })
     );
     
-   window.location.href = "/explorer.html?file=${encodeURIComponent(currentFileName)}";
+   window.location.href = `/explorer.html?file=${encodeURIComponent(currentFileName)}`;
 
-
+}
 
   document.getElementById("confirmHeadersBtn").addEventListener("click", () => {
   const checkboxes = document.querySelectorAll("#headersList input[type=checkbox]");
