@@ -213,9 +213,11 @@ document.getElementById("confirmHeadersBtn").addEventListener("click", () => {
   checkboxes.forEach(cb => {
     if (cb.checked) {
       confirmedHeaders.push(cb.parentElement.textContent.trim());
+
+      mostrarTabla(confirmedHeaders);
     }
 
-    mostrarTabla(confirmedHeaders);
+    
     
   });
 
