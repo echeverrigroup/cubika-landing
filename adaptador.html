@@ -160,6 +160,7 @@
 
 /* ====== NUEVO MÓDULO: Ir a Visualizador de la tabla segun headers seleccionados ====== */
   function irAExplorador(headersConfirmados) {
+    
   sessionStorage.setItem(
     "cubika_analysis",
     JSON.stringify({
@@ -170,8 +171,6 @@
     );
     
     window.location.href = "/explorer.html";
-
-    document.getElementById("activeFileName").textContent = currentFileName;
 }
 
 
