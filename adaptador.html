@@ -218,12 +218,14 @@ document.getElementById("confirmHeadersBtn").addEventListener("click", () => {
     if (cb.checked) {
       confirmedHeaders.push(cb.parentElement.textContent.trim());
 
-      mostrarTabla(confirmedHeaders);
+      
     }
 
     
     
   });
+
+  mostrarTabla(confirmedHeaders);
 
   console.log("Headers confirmados:", confirmedHeaders);
 
@@ -259,7 +261,7 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
 if (result.analysis && result.analysis.headers?.length > 0) {
   mostrarHeaders(result.analysis.headers);
 
-  mostrarTabla();
+ // mostrarTabla();
   
   console.log("Fila de encabezados:", result.analysis.headerRowIndex);
 }
