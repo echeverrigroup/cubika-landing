@@ -171,7 +171,11 @@ function mostrarTabla(headersConfirmados) {
   const headerRow = allRows[headerRowIndex];
 
   const columnIndexes = headerRow
-    .map((h, i) => headersConfirmados.includes(h?.trim()) ? i : null)
+    .map((h, i) => {
+      if (typeof h !== "string") return null;
+      if (headersConfirmados.includes(h.trim())) return i;
+      return null;
+    })
     .filter(i => i !== null);
 
   const thead = document.createElement("thead");
