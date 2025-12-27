@@ -39,14 +39,32 @@
 
 <h1>Historial de archivos cargados</h1>
 
+  <button id="deleteSelected" style="
+  margin-bottom: 20px;
+  padding: 10px 16px;
+  background: #c62828;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+">
+  Eliminar seleccionados
+</button>
+
+
 <table id="filesTable">
   <thead>
-    <tr>
-      <th>Archivo</th>
-      <th>Tamaño (KB)</th>
-      <th>Fecha</th>
-    </tr>
+  <tr>
+    <th>
+      <input type="checkbox" id="selectAll" />
+    </th>
+    <th>Archivo</th>
+    <th>Tamaño (KB)</th>
+    <th>Fecha</th>
+  </tr>
   </thead>
+
   <tbody></tbody>
 </table>
 
@@ -61,17 +79,60 @@ async function loadFiles() {
   data.files.forEach(file => {
     const row = document.createElement("tr");
 
-    row.innerHTML = `
-      <td>${file.name}</td>
-      <td>${(file.metadata?.size / 1024).toFixed(2)}</td>
-      <td>${new Date(file.created_at).toLocaleString()}</td>
-    `;
+   row.innerHTML = `
+  <td>
+    <input type="checkbox" class="fileCheckbox" data-path="${file.name}">
+  </td>
+  <td>${file.name}</td>
+  <td>${(file.metadata?.size / 1024).toFixed(2)}</td>
+  <td>${new Date(file.created_at).toLocaleString()}</td>
+`;
+
 
     tbody.appendChild(row);
   });
 }
 
 loadFiles();
+
+  document.getElementById("selectAll").addEventListener("change", (e) => {
+  const checked = e.target.checked;
+  document.querySelectorAll(".fileCheckbox").forEach(cb => {
+    cb.checked = checked;
+  });
+});
+
+  document.getElementById("deleteSelected").addEventListener("click", async () => {
+  const selected = Array.from(
+    document.querySelectorAll(".fileCheckbox:checked")
+  ).map(cb => cb.dataset.path);
+
+  if (selected.length === 0) {
+    alert("No hay archivos seleccionados");
+    return;
+  }
+
+  if (!confirm(`¿Eliminar ${selected.length} archivo(s)?`)) {
+    return;
+  }
+
+  const res = await fetch("/api/delete-uploads", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ files: selected })
+  });
+
+  const result = await res.json();
+
+  if (result.success) {
+    alert("Archivos eliminados correctamente");
+    loadFiles(); // recarga la tabla
+  } else {
+    alert("Error eliminando archivos");
+    console.error(result);
+  }
+});
+
 </script>
 
 </body>
