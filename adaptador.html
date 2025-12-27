@@ -170,8 +170,8 @@
     })
     );
     
-    window.location.href = "/explorer.html";
-}
+   window.location.href = `/explorer.html?file=${encodeURIComponent(currentFileName)}`;
+
 
 
   document.getElementById("confirmHeadersBtn").addEventListener("click", () => {
