@@ -165,9 +165,13 @@
     JSON.stringify({
       analysis: analysisCache,
       headersConfirmados
+      
     })
+    
   );
 
+  document.getElementById("activeFileName").textContent = currentFileName;
+    
   window.location.href = "/explorer.html";
 }
 
@@ -224,7 +228,7 @@ function mostrarTabla(headersConfirmados) {
 
   table.appendChild(tbody);
 
-  document.getElementById("activeFileName").textContent = currentFileName;
+  
 
 }
   
