@@ -156,6 +156,20 @@
   });
 }
 
+/* ====== NUEVO MÓDULO: Ir a Visualizador de la tabla segun headers seleccionados ====== */
+  function irAExplorador(headersConfirmados) {
+  sessionStorage.setItem(
+    "cubika_analysis",
+    JSON.stringify({
+      analysis: analysisCache,
+      headersConfirmados
+    })
+  );
+
+  window.location.href = "/explorer.html";
+}
+
+
 
   /* ====== NUEVO MÓDULO: Vista de tabla ====== */
 function mostrarTabla(headersConfirmados) {
@@ -217,14 +231,12 @@ document.getElementById("confirmHeadersBtn").addEventListener("click", () => {
   checkboxes.forEach(cb => {
     if (cb.checked) {
       confirmedHeaders.push(cb.parentElement.textContent.trim());
-
-      
     }
     
     
   });
 
-  mostrarTabla(confirmedHeaders);
+  irAExplorador(confirmedHeaders);
 
   console.log("Headers confirmados:", confirmedHeaders);
 
