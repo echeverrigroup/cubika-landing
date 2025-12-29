@@ -112,6 +112,91 @@
   transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(0,0,0,0.2);
 }
+
+.footer {
+  background: #0b0f1a;
+  color: #ffffff;
+  padding: 80px 60px 30px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-logo {
+  width: 140px;
+  margin-bottom: 20px;
+}
+
+.footer-brand p {
+  color: #bfc5d2;
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+.footer-column h4 {
+  font-size: 14px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #bfc5d2;
+}
+
+.footer-column a {
+  color: #bfc5d2;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-column a:hover {
+  color: #4f7cff;
+}
+
+/* Footer bottom */
+.footer-bottom {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-bottom p {
+  font-size: 13px;
+  color: #8b90a0;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: #8b90a0;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+    
     
   </style>
 </head>
@@ -175,64 +260,64 @@
   <a href="/Inicio-CURU.html" class="cta-upload">
   Ver CuruApp
 </a>
-  
-</body>
 
 <footer class="footer">
   <div class="footer-container">
 
-    <div class="footer-column">
+    <!-- Marca -->
+    <div class="footer-brand">
       <img src="img/logo-cubika.svg" alt="Cubika" class="footer-logo">
-      <p class="footer-description">
+      <p>
         Inteligencia logística para decisiones basadas en datos.
-      </p>
-      <p class="footer-description">
-        Convierte información operativa en ventaja competitiva para tu cadena de suministro.
       </p>
     </div>
 
+    <!-- Producto -->
     <div class="footer-column">
       <h4>Producto</h4>
       <ul>
-        <li><a href="#como-funciona">Cómo funciona</a></li>
-        <li><a href="#cubicacion">Cubicación</a></li>
-        <li><a href="#traspasos">Traspasos inteligentes</a></li>
-        <li><a href="#etiquetado">Etiquetado y trazabilidad</a></li>
-        <li><a href="#integraciones">Integraciones</a></li>
+        <li><a href="#">Cómo funciona</a></li>
+        <li><a href="#">Cubicación</a></li>
+        <li><a href="#">Traspasos inteligentes</a></li>
+        <li><a href="#">Etiquetado</a></li>
+        <li><a href="#">Integraciones</a></li>
       </ul>
     </div>
 
+    <!-- Soluciones -->
     <div class="footer-column">
       <h4>Soluciones</h4>
       <ul>
-        <li><a href="/3pl.html">3PL</a></li>
-        <li><a href="/retail.html">Retail</a></li>
-        <li><a href="/distribucion.html">Distribución</a></li>
+        <li><a href="#">3PL</a></li>
+        <li><a href="#">Retail</a></li>
+        <li><a href="#">Distribución</a></li>
       </ul>
     </div>
 
+    <!-- Contacto -->
     <div class="footer-column">
       <h4>Contacto</h4>
       <ul>
-        <li><a href="#demo">Solicitar demo</a></li>
-        <li><a href="#contacto">Hablar con un especialista</a></li>
-      </ul>
-
-      <h4>Legal</h4>
-      <ul>
-        <li><a href="/terminos.html">Términos y condiciones</a></li>
-        <li><a href="/privacidad.html">Política de privacidad</a></li>
+        <li>contacto@cubika.io</li>
+        <li>+56 9 1234 5678</li>
+        <li>Santiago, Chile</li>
       </ul>
     </div>
 
   </div>
 
   <div class="footer-bottom">
-    <p>© 2025 Cubika · Todos los derechos reservados</p>
-    <p>Diseñado para operaciones logísticas basadas en datos</p>
+    <p>© 2025 Cubika. Todos los derechos reservados.</p>
+    <div class="footer-links">
+      <a href="#">Privacidad</a>
+      <a href="#">Términos</a>
+    </div>
   </div>
 </footer>
 
+
+  
+</body>
 
 
   
