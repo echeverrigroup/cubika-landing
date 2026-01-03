@@ -255,7 +255,38 @@ input {
   }
 </script>
 
+<script>
+  const activateForm = document.getElementById("activateForm");
 
+  activateForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    clearErrors(activateForm);
+
+    const pass = document.getElementById("password");
+    const confirm = document.getElementById("confirmPassword");
+
+    if (pass.value.length < 10) {
+      pass.classList.add("input-error");
+      return;
+    }
+
+    if (pass.value !== confirm.value) {
+      pass.classList.add("input-error");
+      confirm.classList.add("input-error");
+      return;
+    }
+
+    setLoading(activateForm, true, "Activando cuenta...");
+
+    setTimeout(() => {
+      setLoading(activateForm, false);
+      showMessage("successMessage");
+    }, 1500);
+  });
+</script>
+
+  
   
 </body>
 </html>
