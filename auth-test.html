@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cubika – Auth & RLS Test</title>
+</head>
+<body>
+
+  <h1>Auth & RLS Test – Cubika</h1>
+
+  <section>
+    <h2>Login</h2>
+    <input id="email" type="email" placeholder="Email" />
+    <input id="password" type="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <p id="login-status"></p>
+  </section>
+
+  <section>
+    <h2>Session Info</h2>
+    <pre id="session-info">No session</pre>
+  </section>
+
+  <section>
+    <h2>Users (SELECT)</h2>
+    <button onclick="loadUsers()">Load users</button>
+    <pre id="users-output"></pre>
+  </section>
+
+</body>
+
+<script type="module">
+  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+  const supabase = createClient(
+    "https://blwoktluuusvhulqjkzp.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsd29rdGx1dXVzdmh1bHFqa3pwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxNjY1NjcsImV4cCI6MjA4MDc0MjU2N30.Af_I--UFK1-aa0G10JQZlkNo3MquhFxPX6miDkiNRME"
+  );
+
+  window.login = async () => {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    document.getElementById("login-status").textContent =
+      error ? error.message : "Login exitoso";
+
+    showSession();
+  };
+
+  async function showSession() {
+    const { data } = await supabase.auth.getSession();
+    document.getElementById("session-info").textContent =
+      JSON.stringify(data, null, 2);
+  }
+
+  window.loadUsers = async () => {
+    const { data, error } = await supabase
+      .from("users")
+      .select("*");
+
+    document.getElementById("users-output").textContent =
+      error ? error.message : JSON.stringify(data, null, 2);
+  };
+
+</script>
+
+</html>
