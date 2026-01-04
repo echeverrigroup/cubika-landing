@@ -24,36 +24,28 @@ guardSuperAdmin();
 const form = document.getElementById('createCompanyForm');
 const result = document.getElementById('result');
 
-form.addEventListener('submit', async (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const companyName = document.getElementById('companyName').value;
+  const companyName = document.getElementById("companyName").value;
+  const adminEmail = document.getElementById("adminEmail").value;
 
-  result.textContent = 'Creando empresa...';
-
-  const { data, error } = await supabase.rpc(
-    'create_company_with_admin',
-    {
-      p_company_name: companyName,
-      
-    }
-  );
+  result.textContent = "Enviando invitación...";
 
   const { data, error } = await supabase.functions.invoke(
-  "invite-company-admin",
-  {
-    body: {
-      companyName,
-      adminEmail
+    "invite-company-admin",
+    {
+      body: {
+        companyName,
+        adminEmail,
+      },
     }
-  }
-);
-
+  );
 
   if (error) {
     result.textContent = `Error: ${error.message}`;
     return;
   }
 
-  result.textContent = `Empresa creada:\n${JSON.stringify(data, null, 2)}`;
+  result.textContent = "Empresa creada e invitación enviada ✔️";
 });
