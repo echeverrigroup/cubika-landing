@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Activando cuenta...</title>
+</head>
+<body>
+  <p>Activando tu cuenta, espera un momento…</p>
+
+  <script type="module">
+    import { supabase } from "../js/supabaseClient.js";
+
+    async function handleAuth() {
+      // Esto lee el access_token del hash
+      const { data, error } = await supabase.auth.getSession();
+
+      if (error || !data.session) {
+        document.body.innerText = "Error activando sesión. Reintenta desde el email.";
+        return;
+      }
+
+      // Sesión OK → onboarding
+      window.location.href = "/onboarding.html";
+    }
+
+    handleAuth();
+  </script>
+</body>
+</html>
