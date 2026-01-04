@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Crear Empresa | Cubika</title>
+</head>
+<body>
+  <h1>Crear nueva empresa</h1>
+
+  <form id="createCompanyForm">
+    <label>
+      Nombre de la empresa
+      <input type="text" id="companyName" required />
+    </label>
+
+    <br /><br />
+
+    <label>
+      UID del Admin Empresa
+      <input type="text" id="adminUid" required />
+    </label>
+
+    <br /><br />
+
+    <button type="submit">Crear empresa</button>
+  </form>
+
+  <pre id="result"></pre>
+
+  <script type="module" src="./companies.js"></script>
+</body>
+</html>
