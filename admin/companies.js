@@ -1,4 +1,4 @@
-import { supabase } from '../supabaseClient.js';
+import { supabase } from "../js/supabaseClient.js";
 
 async function guardSuperAdmin() {
   const { data: { user } } = await supabase.auth.getUser();
