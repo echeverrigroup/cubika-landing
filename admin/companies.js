@@ -28,7 +28,6 @@ form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const companyName = document.getElementById('companyName').value;
-  const adminUid = document.getElementById('adminUid').value;
 
   result.textContent = 'Creando empresa...';
 
@@ -36,7 +35,7 @@ form.addEventListener('submit', async (e) => {
     'create_company_with_admin',
     {
       p_company_name: companyName,
-      p_admin_user_id: adminUid
+      
     }
   );
 
