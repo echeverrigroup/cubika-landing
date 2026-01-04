@@ -40,6 +40,17 @@ form.addEventListener('submit', async (e) => {
     }
   );
 
+  const { data, error } = await supabase.functions.invoke(
+  "invite-company-admin",
+  {
+    body: {
+      companyName,
+      adminEmail
+    }
+  }
+);
+
+
   if (error) {
     result.textContent = `Error: ${error.message}`;
     return;
