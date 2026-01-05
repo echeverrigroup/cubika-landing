@@ -20,7 +20,7 @@ async function init() {
     .single();
 
   if (profile?.onboarding_completed) {
-    window.location.href = "/dashboard.html";
+    window.location.href = "/uploads-history.html";
   }
 }
 
@@ -70,7 +70,7 @@ form.addEventListener("submit", async (e) => {
   }
 
   // 4️⃣ Fin del onboarding
-  window.location.href = "/dashboard.html";
+  window.location.href = "/uploads-history.html";
 });
 
 init();
