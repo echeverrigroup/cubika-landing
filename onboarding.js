@@ -21,7 +21,7 @@ async function init() {
     .single();
 
   if (profile?.full_name) {
-    window.location.href = "/dashboard.html";
+    window.location.href = "/uploads-history.html.html";
   }
 }
 
@@ -43,7 +43,7 @@ form.addEventListener("submit", async (e) => {
   }
 
   result.textContent = "Registro completo ✔️";
-  window.location.href = "/dashboard.html";
+  window.location.href = "/uploads-jistory.html";
 });
 
 init();
