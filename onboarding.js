@@ -43,7 +43,7 @@ form.addEventListener("submit", async (e) => {
   }
 
   result.textContent = "Registro completo ✔️";
-  window.location.href = "/uploads-jistory.html";
+  window.location.href = "/uploads-history.html";
 });
 
 init();
