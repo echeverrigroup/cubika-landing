@@ -1,4 +1,4 @@
-import { supabase } from "/js/supabaseClient.js";
+import { supabase } from "js/supabaseClient.js";
 
 const form = document.getElementById("onboardingForm");
 const result = document.getElementById("result");
