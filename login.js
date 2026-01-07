@@ -11,7 +11,7 @@ form.addEventListener("submit", async (e) => {
 
   result.textContent = "Iniciando sesión...";
 
-  const { data, error } = await supabase.auth.signInWithPassword({
+  const { error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
@@ -21,16 +21,25 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  // Usuario autenticado → evaluar estado
   await postLoginRedirect();
 });
 
 async function postLoginRedirect() {
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    result.textContent = "Error de sesión.";
+    return;
+  }
 
   const { data: profile, error } = await supabase
     .from("users")
-    .select("onboarding_completed")
+    .select(`
+      onboarding_completed,
+      roles ( code )
+    `)
     .eq("id", user.id)
     .single();
 
@@ -40,9 +49,24 @@ async function postLoginRedirect() {
     return;
   }
 
+  // 🔁 Onboarding incompleto
   if (!profile.onboarding_completed) {
     window.location.href = "/onboarding.html";
-  } else {
-    window.location.href = "/dashboard.html";
+    return;
+  }
+
+  // 🔐 Redirección por rol
+  switch (profile.roles.code) {
+    case "SUPER_ADMIN":
+      window.location.href = "/admin/companies.html";
+      break;
+
+    case "ADMIN_EMPRESA":
+      window.location.href = "/uploads-history.html";
+      break;
+
+    default:
+      result.textContent = "Rol no autorizado.";
+      await supabase.auth.signOut();
   }
 }
