@@ -1,27 +1,29 @@
 import { supabase } from "./js/supabaseClient.js";
 
 const form = document.getElementById("loginForm");
-const result = document.getElementById("result");
+const errorBox = document.getElementById("loginError");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  errorBox.style.display = "none";
+
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  result.textContent = "Iniciando sesión...";
+  try {
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
-  const { error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
+    if (error) throw error;
 
-  if (error) {
-    result.textContent = error.message;
-    return;
+    await postLoginRedirect();
+  } catch (err) {
+    errorBox.textContent = err.message;
+    errorBox.style.display = "block";
   }
-
-  await postLoginRedirect();
 });
 
 async function postLoginRedirect() {
@@ -29,10 +31,7 @@ async function postLoginRedirect() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) {
-    result.textContent = "Error de sesión.";
-    return;
-  }
+  if (!user) throw new Error("Sesión inválida");
 
   const { data: profile, error } = await supabase
     .from("users")
@@ -44,18 +43,15 @@ async function postLoginRedirect() {
     .single();
 
   if (error || !profile) {
-    result.textContent = "Error de perfil. Contacta soporte.";
     await supabase.auth.signOut();
-    return;
+    throw new Error("Error de perfil. Contacta soporte.");
   }
 
-  // 🔁 Onboarding incompleto
   if (!profile.onboarding_completed) {
     window.location.href = "/onboarding.html";
     return;
   }
 
-  // 🔐 Redirección por rol
   switch (profile.roles.code) {
     case "SUPER_ADMIN":
       window.location.href = "/admin/companies.html";
@@ -66,7 +62,7 @@ async function postLoginRedirect() {
       break;
 
     default:
-      result.textContent = "Rol no autorizado.";
       await supabase.auth.signOut();
+      throw new Error("Rol no autorizado.");
   }
 }
