@@ -217,33 +217,7 @@ input {
   }
 </script>
 
-<script>
-  const loginForm = document.getElementById("loginForm");
-
-  loginForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    clearErrors(loginForm);
-    document.getElementById("loginError").style.display = "none";
-
-    const email = document.getElementById("email");
-    const password = document.getElementById("password");
-
-    if (!email.value || !password.value) {
-      if (!email.value) email.classList.add("input-error");
-      if (!password.value) password.classList.add("input-error");
-      return;
-    }
-
-    setLoading(loginForm, true, "Ingresando...");
-
-    setTimeout(() => {
-      setLoading(loginForm, false);
-      document.getElementById("loginError").style.display = "block";
-    }, 1500);
-  });
-</script>
-  
+<script type="module" src="/login.js"></script>
 
 </body>
 </html>
