@@ -1,5 +1,10 @@
 import { supabase } from "../js/supabaseClient.js";
 
+import { guardRole } from "../js/guards.js";
+
+await guardRole(["SUPER_ADMIN"]);
+
+
 async function guardSuperAdmin() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {
