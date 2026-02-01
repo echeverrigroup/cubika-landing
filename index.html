@@ -509,6 +509,86 @@
 
 }
 
+/* ========== USE CASES SECTION ========== */
+
+.use-cases {
+  padding: 100px 40px;
+  background-color: #ffffff;
+}
+
+.use-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.use-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.use-header h2 {
+  font-size: 2.3rem;
+  color: #0b2b4b;
+  margin-bottom: 16px;
+}
+
+.use-header p {
+  font-size: 1.1rem;
+  color: #4a5d73;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.use-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.use-card {
+  background: #f7f9fc;
+  padding: 36px 28px;
+  border-radius: 16px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.use-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.use-icon {
+  font-size: 36px;
+  margin-bottom: 18px;
+}
+
+.use-card h3 {
+  font-size: 1.25rem;
+  color: #0b2b4b;
+  margin-bottom: 12px;
+}
+
+.use-card p {
+  font-size: 0.95rem;
+  color: #4a5d73;
+  line-height: 1.45;
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 900px) {
+
+  .use-cases {
+    padding: 80px 24px;
+  }
+
+  .use-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+}
 
 
   </style>
@@ -615,8 +695,9 @@
         <div class="step-icon">📤</div>
         <h3>Output operable</h3>
         <p>
-          Datos listos para integrarse con otros sistemas
-          o apoyar decisiones logísticas.
+          Datos listos para integrarse con otros sistemas,
+          activar procesos operativos en los Modulos Cubika
+          y/o apoyar decisiones logísticas.
         </p>
       </div>
 
@@ -624,6 +705,62 @@
 
   </div>
 </section>
+
+
+<section class="use-cases">
+  <div class="use-container">
+
+    <div class="use-header">
+      <h2>Qué puedes hacer con Cubika</h2>
+      <p>
+        Cubika prepara la información y, cuando tiene sentido,
+        habilita procesos logísticos clave sobre datos confiables.
+      </p>
+    </div>
+
+    <div class="use-grid">
+
+      <div class="use-card">
+        <div class="use-icon">📦</div>
+        <h3>Inventario</h3>
+        <p>
+          Controla y consolida inventarios desde múltiples fuentes,
+          con datos consistentes y listos para operar.
+        </p>
+      </div>
+
+      <div class="use-card">
+        <div class="use-icon">📐</div>
+        <h3>Cubicación</h3>
+        <p>
+          Calcula volúmenes reales a partir de información validada,
+          reduciendo errores y sobrecostos operativos.
+        </p>
+      </div>
+
+      <div class="use-card">
+        <div class="use-icon">🏷️</div>
+        <h3>Etiquetado</h3>
+        <p>
+          Genera etiquetas operativas basadas en datos normalizados,
+          listas para impresión o integración.
+        </p>
+      </div>
+
+      <div class="use-card">
+        <div class="use-icon">🔗</div>
+        <h3>Integraciones</h3>
+        <p>
+          Devuelve la información procesada para alimentar sistemas
+          existentes o flujos personalizados.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
 
 
 
