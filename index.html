@@ -10,7 +10,7 @@
 
   gtag('config', 'G-0LFZ56HRYN');
 </script>
-  
+
 <head>
 
   <!-- favicon principal (.ico) -->
@@ -281,51 +281,133 @@
 }
 
 
+/* ================= HEADER ================= */
+
+.main-header {
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-logo img {
+  height: 36px;
+}
+
+.header-nav {
+  display: flex;
+  gap: 32px;
+}
+
+.header-nav a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #0a2540;
+}
+
+.header-actions .btn-login {
+  background: #57c221;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* =============== MOBILE MENU =============== */
+
+.mobile-menu {
+  display: none;
+  background: #fff;
+  padding: 24px;
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 14px 0;
+  font-size: 18px;
+  text-decoration: none;
+  color: #0a2540;
+}
+
+.mobile-login {
+  margin-top: 12px;
+  background: #57c221;
+  color: #fff;
+  text-align: center;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* ============== RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  .header-nav,
+  .header-actions {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+}
+
+
   </style>
 </head>
 
   
 <body>
 
-  <header style="
-  width: 100%;
-  padding: 16px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  border-bottom: 1px solid #e5e5e5;
-">
+<header class="main-header">
+  <div class="header-container">
 
-  <a href="/" style="display:flex; align-items:center; text-decoration:none;">
-    <img src="img/isologo-1.png" alt="Cubika logo" width="220" />
-  </a>
+    <div class="header-logo">
+      <img src="isologo-1.png" alt="Cubika">
+    </div>
 
-  <nav style="display:flex; gap:50px;">
-    <a href="/" style="text-decoration:none; color:#001A32; font-weight:500;">
-      Quiénes somos
-    </a>
-    <a href="/adaptador.html" style="text-decoration:none; color:#001A32; font-weight:500;">
-      Cómo lo hacemos
-    </a>
-    <a href="/uploads-history.html" style="text-decoration:none; color:#001A32; font-weight:500;">
-      Caracteristicas
-    </a>
+    <nav class="header-nav">
+      <a href="#producto">Producto</a>
+      <a href="#soluciones">Soluciones</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
 
-     <a href="/uploads-history.html" style="text-decoration:none; color:#001A32; font-weight:500;">
-      Contacto
-    </a>
+    <div class="header-actions">
+      <a href="/login.html" class="btn-login">Iniciar sesión</a>
+    </div>
 
-     <a href="/uploads-history.html" style="text-decoration:none; color:#001A32; font-weight:500;">
-      Historial
-    </a>
+    <div class="menu-toggle">☰</div>
 
-    <a href="/login.html" class="cta-upload2">
-  Iniciar Sesión
-    </a>
-  </nav>
-
+  </div>
 </header>
+
+<!-- MENÚ MOBILE -->
+<div class="mobile-menu">
+  <a href="#producto">Producto</a>
+  <a href="#soluciones">Soluciones</a>
+  <a href="#contacto">Contacto</a>
+  <a href="/login.html" class="mobile-login">Iniciar sesión</a>
+</div>
+
+  
 
 <section class="hero">
   <div class="hero-container">
