@@ -424,6 +424,93 @@
 }
 
 
+/* ========== HOW IT WORKS SECTION ========== */
+
+.how-it-works {
+  padding: 100px 40px;
+  background-color: #f7f9fc;
+}
+
+.how-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.how-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.how-header h2 {
+  font-size: 2.4rem;
+  color: #0b2b4b;
+  margin-bottom: 16px;
+}
+
+.how-header p {
+  font-size: 1.1rem;
+  color: #4a5d73;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.how-steps {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 50px;
+  align-items: stretch;
+}
+
+.how-step {
+  background: #ffffff;
+  padding: 40px 32px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+}
+
+.how-step-center {
+  border: 2px solid #57c221;
+}
+
+.step-icon {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.how-step h3 {
+  font-size: 1.4rem;
+  color: #0b2b4b;
+  margin-bottom: 14px;
+}
+
+.how-step p {
+  font-size: 1rem;
+  color: #4a5d73;
+  line-height: 1.5;
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 900px) {
+
+  .how-it-works {
+    padding: 80px 24px;
+  }
+
+  .how-steps {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .how-step-center {
+    order: -1;
+  }
+
+}
+
+
+
   </style>
 </head>
 
@@ -488,6 +575,56 @@
 
   </div>
 </section>
+
+
+<section class="how-it-works" id="como-funciona">
+  <div class="how-container">
+
+    <div class="how-header">
+      <h2>Cómo funciona Cubika</h2>
+      <p>
+        Una capa inteligente que convierte datos desordenados
+        en información operable, sin cambiar tu forma de trabajar.
+      </p>
+    </div>
+
+    <div class="how-steps">
+
+      <!-- Paso 1 -->
+      <div class="how-step">
+        <div class="step-icon">📥</div>
+        <h3>Ingesta de datos</h3>
+        <p>
+          Conecta archivos, planillas o exportaciones desde
+          múltiples sistemas y formatos.
+        </p>
+      </div>
+
+      <!-- Paso 2 -->
+      <div class="how-step how-step-center">
+        <div class="step-icon">🧊</div>
+        <h3>Cubika</h3>
+        <p>
+          Detecta estructuras, normaliza la información y permite
+          validación humana para asegurar consistencia y control.
+        </p>
+      </div>
+
+      <!-- Paso 3 -->
+      <div class="how-step">
+        <div class="step-icon">📤</div>
+        <h3>Output operable</h3>
+        <p>
+          Datos listos para integrarse con otros sistemas
+          o apoyar decisiones logísticas.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
 
 
 <footer class="site-footer">
