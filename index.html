@@ -470,8 +470,21 @@
 .step-icon {
   font-size: 40px;
   margin-bottom: 20px;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+
+.step-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+    
 .how-step h3 {
   font-size: 1.4rem;
   color: #0b2b4b;
@@ -588,8 +601,6 @@
 }
 
 
-
-
 /* ========== RESPONSIVE ========== */
 
 @media (max-width: 900px) {
@@ -687,7 +698,9 @@
 
       <!-- Paso 1 -->
       <div class="how-step">
-        <div class="step-icon">📥</div>
+        <div class="step-icon">
+        <img src="./img/input-image.png" alt="Inventario">
+        </div>
         <h3>Ingesta de datos</h3>
         <p>
           Conecta archivos, planillas o exportaciones desde
