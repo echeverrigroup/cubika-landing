@@ -539,22 +539,9 @@
   gap: 32px;
 }
 
-.use-card {
-  background: #f7f9fc;
-  padding: 36px 28px;
-  border-radius: 16px;
-  text-align: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
 .use-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-}
-
-.use-icon {
-  font-size: 36px;
-  margin-bottom: 18px;
 }
 
 .use-card h3 {
@@ -568,6 +555,38 @@
   color: #4a5d73;
   line-height: 1.45;
 }
+
+.use-card {
+  background: #f7f9fc;
+  padding: 36px 28px;
+  border-radius: 16px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.service-icon {
+  width: 72px;      /* tamaño consistente */
+  height: 72px;
+  margin: 0 auto 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.use-icon {
+  font-size: 36px;
+  margin-bottom: 18px;
+}
+
+
+.service-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
 
 /* ========== RESPONSIVE ========== */
 
@@ -723,6 +742,19 @@
           con datos consistentes y listos para operar.
         </p>
       </div>
+
+    <div class="service-card">
+    <div class="service-icon">
+      <img src="./img/inventario-imagen.png" alt="Inventario Cubika">
+    </div>
+
+    <h3>Inventario</h3>
+    <p>
+      Controla y consolida inventarios desde múltiples fuentes,
+      con datos consistentes y listos para operar.
+    </p>
+    </div>
+
 
       <div class="use-card">
         <div class="use-icon">📐</div>
