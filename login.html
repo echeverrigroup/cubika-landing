@@ -14,12 +14,19 @@
 
     body {
       margin: 0;
-      background: #f4f6f8;
+      background-color: #f4f6f8; /* fallback */
+      background-image: url("img/fondo.png");
+      background-size: cover;          /* ajusta al tamaño de pantalla */
+      background-position: center;     /* centra la imagen */
+      background-repeat: no-repeat;    /* evita repetición */
+      background-attachment: fixed;    /* opcional: efecto elegante */
+    
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
     }
+
 
     .login-container {
       width: 100%;
@@ -144,7 +151,6 @@ input {
 
 <body>
 
-<img src="img/fondo.png" alt="Fondo" />
   
   <div class="login-container">
 
