@@ -45,8 +45,21 @@ export default async function handler(req, res) {
 
           console.log("ANALYSIS RESULT:", analysisResult);
           
+          // fallback si no se detectó header
+          if (
+            analysisResult.headerRowIndex === null ||
+            analysisResult.headerRowIndex === undefined
+          ) {
+            console.warn("No se detectó fila de encabezados. Usando fila 0.");
+            analysisResult.headerRowIndex = 0;
+          }
+          
           // 2️⃣ Detectar columnas logísticas
           const columnMap = detectarColumnas(analysisResult.headers);
+
+          if (!Array.isArray(analysisResult.rows)) {
+              throw new Error("El Excel no contiene filas válidas");
+            }
           
           // 3️⃣ Normalizar tabla
           const tablaNormalizada = normalizarTabla(
