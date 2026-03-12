@@ -13,6 +13,8 @@ export const config = {
   },
 };
 
+throw new Error("TEST ERROR CUBIKA");
+
 export default async function handler(req, res) {
   console.log("UPLOAD ENDPOINT HIT");
   if (req.method !== "POST") {
