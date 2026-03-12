@@ -79,16 +79,20 @@ export function analizarExcelDesdeBuffer(buffer) {
 
   let headers = [];
 
-  if (headerRowIndex !== null) {
-
+  if (
+    headerRowIndex !== null &&
+    rows[headerRowIndex] &&
+    Array.isArray(rows[headerRowIndex])
+  ) {
     headers = rows[headerRowIndex]
-      .map(cell =>
-        typeof cell === "string" ? cell.trim() : null
-      )
+      .map(cell => (typeof cell === "string" ? cell.trim() : null))
       .filter(cell => cell && cell.length > 0);
-
   }
 
+  console.log("Header row detectada:", headerRowIndex);
+  console.log("Fila completa:", rows[headerRowIndex]);
+  
+    
   return {
     headerRowIndex,
     headers,
