@@ -1,7 +1,6 @@
 import Busboy from "busboy";
 import { createClient } from "@supabase/supabase-js";
 import { analizarExcelDesdeBuffer } from "./read-excel.js";
-
 import { mapearColumnas } from "./column-mapper.js";
 import { normalizarTabla } from "./table-normalizer.js";
 import { validarRegistros } from "./logistics-validator.js";
