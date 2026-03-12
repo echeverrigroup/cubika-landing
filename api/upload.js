@@ -42,6 +42,8 @@ export default async function handler(req, res) {
 
           // 1️⃣ Analizar Excel
           analysisResult = analizarExcelDesdeBuffer(buffer);
+
+          console.log("ANALYSIS RESULT:", analysisResult);
           
           // 2️⃣ Detectar columnas logísticas
           const columnMap = detectarColumnas(analysisResult.headers);
