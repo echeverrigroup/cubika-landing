@@ -76,6 +76,8 @@ export default async function handler(req, res) {
           
           // 4️⃣ Validar registros
           const validacion = validarRegistros(tablaNormalizada);
+
+           console.log("STEP 3 OK - Continuando pipeline");
           
           // 5️⃣ Normalizar datos logísticos
           const datosLogisticos = normalizarDatosLogisticos(validacion.validRows);
