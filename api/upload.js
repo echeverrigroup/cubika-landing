@@ -14,6 +14,7 @@ export const config = {
 };
 
 export default async function handler(req, res) {
+  console.log("UPLOAD ENDPOINT HIT");
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Método no permitido" });
   }
@@ -25,12 +26,15 @@ export default async function handler(req, res) {
 
   const busboy = Busboy({ headers: req.headers });
 
+  console.log("BUSBOY CREADO");
+
   let uploadPromise;
   let analysisResult;
 
   // 🔒 Promesa que garantiza que el archivo fue procesado
   const fileProcessed = new Promise((resolve, reject) => {
     busboy.on("file", (fieldname, file, info) => {
+      console.log("BUSBOY DETECTÓ UN ARCHIVO");
       const { filename, mimeType } = info;
       const chunks = [];
 
