@@ -172,10 +172,10 @@
 
 .hero {
   position: relative;
-  padding: 120px 40px;
+  padding: 140px 40px;
   overflow: hidden;
-  background: #0b2b4b; /* fallback elegante */
-}    
+  background: #0b2b4b;
+} 
 
 
 .hero-bg {
@@ -205,14 +205,6 @@
   position: relative;
   z-index: 2;
 }    
-    
-    
-.hero {
-  padding: 100px 40px;
-  background: radial-gradient(circle at 20% 30%, #eaf2ff 0%, #ffffff 60%);
-  position: relative;
-  overflow: hidden;
-}
 
 
 .hero::before {
@@ -753,11 +745,18 @@
   
 
 <section class="hero">
-  <div class="hero-container">
 
+  <!-- IMAGEN DE FONDO -->
+  <div class="hero-bg"></div>
+
+  <!-- OVERLAY (oscurece lado izquierdo para legibilidad) -->
+  <div class="hero-overlay"></div>
+
+  <!-- CONTENIDO -->
+  <div class="hero-container">
     <div class="hero-text">
       <h1>
-      Control total y trazabilidad inteligente de tu operación logística
+        Control total y trazabilidad inteligente de tu operación logística
       </h1>
 
       <p>
@@ -765,18 +764,14 @@
         y permite interacción inteligente entre tiendas, bodegas
         y centros de distribución para operar con datos confiables.
       </p>
-        <br>
+
       <div class="hero-actions">
         <a href="#contacto" class="btn-primary">Solicitar demo</a>
         <a href="#como-funciona" class="btn-secondary">Ver cómo funciona</a>
       </div>
     </div>
-
-    <div class="hero-visual">
-      <img src="./img/imagen-hero10.png" alt="Cubika Soluciones Logísticas">
-    </div>
-
   </div>
+
 </section>
 
 
