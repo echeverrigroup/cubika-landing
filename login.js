@@ -58,7 +58,7 @@ async function postLoginRedirect() {
       break;
 
     case "ADMIN_EMPRESA":
-      window.location.href = "/uploads-history.html";
+      window.location.href = "/user/home.html";
       break;
 
     default:
