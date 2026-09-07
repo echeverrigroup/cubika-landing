@@ -3400,3 +3400,9 @@ EDITOR DOCUMENTAL
 .btn-exportar-excel:hover {
     opacity: 0.7;
 }
+
+#btnExportarContratos:hover {
+    background-color: #16a34a;
+    color: #ffffff;
+    border-color: #16a34a;
+}
