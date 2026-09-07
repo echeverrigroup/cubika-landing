@@ -3401,6 +3401,13 @@ EDITOR DOCUMENTAL
     opacity: 0.7;
 }
 
+#btnExportarContratos {
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
 #btnExportarContratos:hover {
     background-color: #16a34a;
     color: #ffffff;
