@@ -1240,7 +1240,7 @@ function bindEvents() {
                 ------------------------------------------------------
                 */
 
-                navigate("construction_empresas");
+                navigate("construction_contratos");
 
             }
         );
