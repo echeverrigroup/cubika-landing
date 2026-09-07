@@ -369,10 +369,12 @@ async function obtenerFormularioCargo(cargo = null) {
 
                     <label>Descripción</label>
 
-                    <textarea
+                    <input
                         id="descripcion"
                         class="cubika-input"
-                        rows="3">${cargo?.descripcion ?? ""}</textarea>
+                        value="${cargo?.descripcion ?? ""}"
+                        
+                    >
 
                 </div>
 
