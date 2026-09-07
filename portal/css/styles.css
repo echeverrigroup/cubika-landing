@@ -3410,5 +3410,6 @@ EDITOR DOCUMENTAL
 
 #btnExportarContratos:hover {
     background: transparent;
+    font-weight: bold;
     color: #16a34a;
 }
