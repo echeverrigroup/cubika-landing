@@ -3409,8 +3409,6 @@ EDITOR DOCUMENTAL
 }
 
 #btnExportarContratos:hover {
-    background-color: #16a34a;
-    color: #ffffff;
-    border-color: #16a34a;
-     border-radius: 10px;
+    background: transparent;
+    color: #16a34a;
 }
