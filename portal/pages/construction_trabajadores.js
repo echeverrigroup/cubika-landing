@@ -50,7 +50,16 @@ export async function renderConstructionTrabajadores() {
 
             <h1>Trabajadores</h1>
 
-        </div>
+      
+
+
+                <button id="btnNuevoTrabajador">
+
+                    + Nuevo Trabajador
+
+                </button>
+
+              </div>
 
 
         <div class="cubika-tabs">
@@ -80,16 +89,6 @@ export async function renderConstructionTrabajadores() {
         <div
             id="trabajadoresTab"
             class="cubika-tab-content">
-
-            <div class="page-header">
-
-                <button id="btnNuevoTrabajador">
-
-                    + Nuevo Trabajador
-
-                </button>
-
-            </div>
 
 
             <div class="table-filters">
