@@ -83,8 +83,6 @@ export async function renderConstructionTrabajadores() {
 
             <div class="page-header">
 
-                <div></div>
-
                 <button id="btnNuevoTrabajador">
 
                     + Nuevo Trabajador
